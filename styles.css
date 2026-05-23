@@ -1184,6 +1184,18 @@ h1 {
     position: static;
   }
 
+  .detail-hero {
+    min-height: auto;
+    align-items: start;
+    gap: 28px;
+    padding-top: 132px;
+    padding-bottom: 44px;
+  }
+
+  .detail-content {
+    gap: 24px;
+  }
+
   .testimonial-grid {
     grid-column: auto;
   }
@@ -1200,6 +1212,10 @@ h1 {
   .brand-mark {
     width: 42px;
     height: 42px;
+  }
+
+  .brand-mark img {
+    transform: scale(1.52);
   }
 
   .brand strong {
@@ -1233,7 +1249,9 @@ h1 {
     width: 100%;
   }
 
-  .section {
+  .section,
+  .detail-hero,
+  .detail-content {
     padding-inline: 18px;
   }
 
@@ -1276,6 +1294,86 @@ h1 {
 
   .footer {
     display: grid;
+  }
+
+  .detail-hero {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    padding-top: 118px;
+    padding-bottom: 34px;
+    background-position: 58% center;
+  }
+
+  .detail-main,
+  .detail-body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .detail-hero > *,
+  .detail-panel,
+  .detail-content,
+  .detail-copy,
+  .detail-aside {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .detail-hero h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+    font-size: clamp(34px, 10.5vw, 42px);
+    line-height: 1;
+  }
+
+  .detail-summary {
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 1.56;
+  }
+
+  .detail-panel {
+    margin-top: 28px;
+    padding: 18px;
+  }
+
+  .detail-panel img {
+    aspect-ratio: 1.7 / 1;
+    margin-bottom: 16px;
+  }
+
+  .detail-content {
+    padding-top: 54px;
+    padding-bottom: 62px;
+  }
+
+  .detail-copy h2 {
+    font-size: clamp(32px, 10vw, 44px);
+    line-height: 1;
+  }
+
+  .detail-copy p,
+  .detail-copy li,
+  .detail-aside p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .detail-copy li {
+    padding: 16px;
+  }
+
+  .detail-aside {
+    padding: 22px;
+  }
+
+  .detail-aside h3 {
+    font-size: 28px;
   }
 }
 
