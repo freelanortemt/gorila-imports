@@ -7,6 +7,13 @@ export type Specialty = {
   detail: string;
   points: string[];
   audience: string;
+  visual: {
+    image: string;
+    alt: string;
+    kicker: string;
+    caption: string;
+    markers: [string, string][];
+  };
 };
 
 export const whatsappNumber = "5566992306879";
@@ -32,7 +39,18 @@ export const specialties: Specialty[] = [
       "Orientações pré e pós-operatórias para mais tranquilidade.",
       "Acompanhamento de cicatrização, conforto e estabilidade."
     ],
-    audience: "Adultos, idosos e pacientes que precisam de procedimentos orais planejados."
+    audience: "Adultos, idosos e pacientes que precisam de procedimentos orais planejados.",
+    visual: {
+      image: "/assets/specialties/cirurgias-odontologicas.jpg",
+      alt: "Equipe odontológica realizando procedimento cirúrgico em ambiente clínico",
+      kicker: "Campo cirúrgico",
+      caption: "Planejamento, iluminação e controle técnico em procedimentos orais.",
+      markers: [
+        ["Protocolo", "etapas claras"],
+        ["Segurança", "acompanhamento"],
+        ["Precisão", "diagnóstico"]
+      ]
+    }
   },
   {
     slug: "harmonizacao",
@@ -49,7 +67,18 @@ export const specialties: Specialty[] = [
       "Indicação responsável de procedimentos conforme necessidade real.",
       "Resultados com discrição, naturalidade e acompanhamento."
     ],
-    audience: "Adultos que buscam estética facial refinada e segura."
+    audience: "Adultos que buscam estética facial refinada e segura.",
+    visual: {
+      image: "/assets/specialties/harmonizacao-orofacial.jpg",
+      alt: "Procedimento estético facial em clínica clara e sofisticada",
+      kicker: "Leitura facial",
+      caption: "Equilíbrio entre expressão, sorriso e naturalidade anatômica.",
+      markers: [
+        ["Análise", "proporção"],
+        ["Estética", "naturalidade"],
+        ["Conduta", "responsável"]
+      ]
+    }
   },
   {
     slug: "implantes",
@@ -66,7 +95,18 @@ export const specialties: Specialty[] = [
       "Integração com próteses e reabilitação oral quando necessário.",
       "Manutenção orientada para longevidade do tratamento."
     ],
-    audience: "Adultos e idosos com perdas dentárias ou necessidade de reconstrução."
+    audience: "Adultos e idosos com perdas dentárias ou necessidade de reconstrução.",
+    visual: {
+      image: "/assets/specialties/implantodontia-premium.jpg",
+      alt: "Modelo odontológico demonstrando implante dental e estrutura óssea",
+      kicker: "Implantes",
+      caption: "Reposição dentária planejada para função, estética e estabilidade.",
+      markers: [
+        ["Osso", "viabilidade"],
+        ["Implante", "posição"],
+        ["Prótese", "naturalidade"]
+      ]
+    }
   },
   {
     slug: "estetica",
@@ -83,7 +123,18 @@ export const specialties: Specialty[] = [
       "Integração com clareamento, gengiva e reabilitação quando necessário.",
       "Foco em naturalidade, refinamento e durabilidade."
     ],
-    audience: "Jovens e adultos que buscam estética sem aparência artificial."
+    audience: "Jovens e adultos que buscam estética sem aparência artificial.",
+    visual: {
+      image: "/assets/specialties/estetica-dental.jpg",
+      alt: "Dentista utilizando guia de cor dental durante planejamento estético",
+      kicker: "Design do sorriso",
+      caption: "Cor, textura e proporção conduzidas com previsibilidade estética.",
+      markers: [
+        ["Cor", "harmonia"],
+        ["Forma", "proporção"],
+        ["Resultado", "identidade"]
+      ]
+    }
   },
   {
     slug: "reabilitacao",
@@ -100,7 +151,18 @@ export const specialties: Specialty[] = [
       "Integração entre implantes, próteses, estética e prevenção.",
       "Manutenção para preservar estabilidade e qualidade do resultado."
     ],
-    audience: "Adultos e idosos que precisam recuperar função, dentes ou conforto."
+    audience: "Adultos e idosos que precisam recuperar função, dentes ou conforto.",
+    visual: {
+      image: "/assets/specialties/reabilitacao-oral.jpg",
+      alt: "Técnico odontológico trabalhando em peça protética com precisão",
+      kicker: "Reconstrução",
+      caption: "Integração entre função mastigatória, prótese e estética do sorriso.",
+      markers: [
+        ["Função", "mordida"],
+        ["Prótese", "adaptação"],
+        ["Fases", "controle"]
+      ]
+    }
   },
   {
     slug: "familia",
@@ -117,7 +179,18 @@ export const specialties: Specialty[] = [
       "Adultos: cirurgias, harmonização, implantes, estética e rotina preventiva.",
       "Idosos: conforto mastigatório, próteses, implantes e manutenção."
     ],
-    audience: "Famílias que buscam um centro odontológico completo."
+    audience: "Famílias que buscam um centro odontológico completo.",
+    visual: {
+      image: "/assets/specialties/odontologia-familia.jpg",
+      alt: "Paciente sorrindo durante consulta odontológica em clínica moderna",
+      kicker: "Ciclo de vida",
+      caption: "Acompanhamento odontológico adaptado à idade, rotina e objetivo.",
+      markers: [
+        ["Infância", "prevenção"],
+        ["Adultos", "estética"],
+        ["Idosos", "reabilitação"]
+      ]
+    }
   },
   {
     slug: "prevencao",
@@ -134,7 +207,18 @@ export const specialties: Specialty[] = [
       "Restaurações e cuidados de clínica geral.",
       "Acompanhamento de manutenção para todas as idades."
     ],
-    audience: "Crianças, adolescentes, adultos e idosos em rotina de cuidado contínuo."
+    audience: "Crianças, adolescentes, adultos e idosos em rotina de cuidado contínuo.",
+    visual: {
+      image: "/assets/specialties/prevencao-clinica.jpg",
+      alt: "Dentista realizando atendimento preventivo com iluminação clínica",
+      kicker: "Manutenção",
+      caption: "Rotina preventiva para preservar saúde, conforto e tratamentos.",
+      markers: [
+        ["Avaliação", "periódica"],
+        ["Limpeza", "controle"],
+        ["Saúde", "continuidade"]
+      ]
+    }
   },
   {
     slug: "ortodontia",
@@ -151,7 +235,18 @@ export const specialties: Specialty[] = [
       "Integração com estética, prevenção e reabilitação quando indicado.",
       "Acompanhamento para evolução organizada do tratamento."
     ],
-    audience: "Crianças, adolescentes e adultos com necessidade de alinhamento."
+    audience: "Crianças, adolescentes e adultos com necessidade de alinhamento.",
+    visual: {
+      image: "/assets/specialties/ortodontia.jpg",
+      alt: "Atendimento ortodôntico com aparelho e instrumentos odontológicos",
+      kicker: "Alinhamento",
+      caption: "Mordida, posicionamento dentário e harmonia do sorriso em evolução.",
+      markers: [
+        ["Mordida", "função"],
+        ["Alinhamento", "estética"],
+        ["Evolução", "controle"]
+      ]
+    }
   }
 ];
 

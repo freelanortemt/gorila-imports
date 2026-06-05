@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Reveal } from "@/components/Reveal";
+import { SpecialtyMedia } from "@/components/SpecialtyMedia";
 import { getSpecialty, makeWhatsAppUrl, specialties, whatsappDisplay } from "@/lib/specialties";
 
 type SpecialtyPageProps = {
@@ -35,7 +35,7 @@ export default async function SpecialtyPage({ params }: SpecialtyPageProps) {
         <div className="volumetric-glow" />
         <div className="cinema-vignette" />
         <div className="detail-hero-inner">
-          <Reveal>
+          <Reveal className="detail-copy">
             <p className="eyebrow">{specialty.label}</p>
             <h1 className="hero-title">{specialty.title}</h1>
             <p className="hero-copy">{specialty.summary}</p>
@@ -49,10 +49,7 @@ export default async function SpecialtyPage({ params }: SpecialtyPageProps) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.14} className="detail-card">
-            <Image src="/assets/limadentt-logo-gold.jpeg" alt="Logo dourada LIMADENTT" width={620} height={420} priority />
-            <p>{specialty.audience}</p>
-          </Reveal>
+          <SpecialtyMedia audience={specialty.audience} visual={specialty.visual} />
         </div>
       </section>
 
