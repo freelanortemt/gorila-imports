@@ -135,14 +135,14 @@ export default function Home() {
           <div>
             <Reveal>
               <p className="eyebrow">Experiência</p>
-              <h2 className="display-title">Ambiente limpo, silencioso e memorável.</h2>
+              <h2 className="display-title">Uma jornada clínica reservada, precisa e personalizada.</h2>
               <p className="hero-copy">
-                A clínica comunica sofisticação pelo cuidado: agenda organizada, linguagem clara, tecnologia discreta e atendimento reservado do primeiro contato ao pós-procedimento.
+                A LIMADENTT traduz sofisticação em condução: agenda criteriosa, privacidade, explicação objetiva e acompanhamento próximo do primeiro contato ao pós-procedimento.
               </p>
             </Reveal>
             <Reveal delay={0.12} className="glass-note">
               <p>
-                Ênfase em cirurgias e harmonização orofacial, sem perder a visão completa da odontologia para famílias, adultos e pacientes de alta complexidade.
+                Cada paciente entende o plano antes de avançar: prioridades, tempo clínico, etapas, cuidados e resultado esperado, com ênfase em cirurgias e harmonização orofacial.
               </p>
             </Reveal>
           </div>

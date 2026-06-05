@@ -163,6 +163,16 @@ export function WebGLHero() {
         <DepthGrid />
         <FloatingMonoliths />
       </Canvas>
+      <div className="kinetic-veil">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="diagnostic-sweep" />
+      <div className="orbital-signature">
+        <span />
+        <span />
+      </div>
       <div className="volumetric-glow" />
       <div className="cinema-vignette" />
     </div>
