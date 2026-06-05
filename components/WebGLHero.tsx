@@ -150,6 +150,70 @@ function FloatingMonoliths() {
   );
 }
 
+function ShaderVeil() {
+  const material = useRef<THREE.ShaderMaterial>(null);
+  const { pointer } = useThree();
+
+  useFrame(({ clock }) => {
+    if (!material.current) return;
+
+    material.current.uniforms.uTime.value = clock.getElapsedTime();
+    material.current.uniforms.uMouse.value.set(pointer.x, pointer.y);
+  });
+
+  return (
+    <mesh position={[0, 0, -4.7]} scale={[10.8, 6.6, 1]}>
+      <planeGeometry args={[1, 1, 1, 1]} />
+      <shaderMaterial
+        ref={material}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        uniforms={{
+          uTime: { value: 0 },
+          uMouse: { value: new THREE.Vector2(0, 0) },
+          uGold: { value: new THREE.Color("#d6ad57") },
+          uBlue: { value: new THREE.Color("#4f7ccc") }
+        }}
+        vertexShader={`
+          varying vec2 vUv;
+
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `}
+        fragmentShader={`
+          uniform float uTime;
+          uniform vec2 uMouse;
+          uniform vec3 uGold;
+          uniform vec3 uBlue;
+          varying vec2 vUv;
+
+          float beam(vec2 uv, float offset, float speed) {
+            float wave = sin((uv.x * 9.0) + uTime * speed + offset) * 0.035;
+            float line = smoothstep(0.035, 0.0, abs((uv.y + wave) - (0.2 + offset * 0.13)));
+            return line;
+          }
+
+          void main() {
+            vec2 uv = vUv;
+            vec2 mouse = uMouse * 0.08;
+            float leftGlow = 1.0 - smoothstep(0.02, 0.72, distance(uv, vec2(0.2 + mouse.x, 0.54 + mouse.y)));
+            float rightGlow = 1.0 - smoothstep(0.03, 0.66, distance(uv, vec2(0.78 - mouse.x, 0.42 - mouse.y)));
+            float grid = smoothstep(0.988, 1.0, sin((uv.x + uTime * 0.015) * 42.0)) * 0.16;
+            grid += smoothstep(0.992, 1.0, sin((uv.y - uTime * 0.02) * 34.0)) * 0.1;
+            float ribbons = beam(uv, 0.35, 0.42) + beam(uv, 1.25, -0.34) * 0.72;
+            vec3 color = uGold * (leftGlow * 0.72 + ribbons * 0.4) + uBlue * (rightGlow * 0.46 + grid * 0.5);
+            float alpha = clamp(leftGlow * 0.28 + rightGlow * 0.24 + ribbons * 0.14 + grid * 0.08, 0.0, 0.5);
+            gl_FragColor = vec4(color, alpha);
+          }
+        `}
+      />
+    </mesh>
+  );
+}
+
 export function WebGLHero() {
   return (
     <div className="webgl-stage" aria-hidden="true" data-webgl-hero>
@@ -159,10 +223,15 @@ export function WebGLHero() {
         <pointLight position={[2.5, 2.2, 2.8]} intensity={8.5} color="#ffe1a1" />
         <pointLight position={[-3, 1.4, -1.8]} intensity={4.2} color="#5d83cc" />
         <fog attach="fog" args={["#050505", 4.8, 10]} />
+        <ShaderVeil />
         <ParticleField />
         <DepthGrid />
         <FloatingMonoliths />
       </Canvas>
+      <div className="clinical-lightfield">
+        <span />
+        <span />
+      </div>
       <div className="kinetic-veil">
         <span />
         <span />

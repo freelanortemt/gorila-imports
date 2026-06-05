@@ -30,15 +30,28 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.18} className="hero-panel">
-            <Image src="/assets/limadentt-logo-gold.jpeg" alt="Logo dourada LIMADENTT" width={620} height={420} priority />
+          <Reveal delay={0.18} className="hero-panel doctor-panel">
+            <figure className="hero-doctor-card">
+              <Image
+                src="/assets/dr-limadentt-diagnostico.jpeg"
+                alt="Dr. Weslen Lima, cirurgião dentista da LIMADENTT em ambiente de diagnóstico odontológico"
+                width={900}
+                height={760}
+                priority
+                sizes="(max-width: 900px) 92vw, 390px"
+              />
+              <figcaption>
+                <span>Direção clínica</span>
+                <strong>Dr. Weslen Lima</strong>
+              </figcaption>
+            </figure>
             <dl>
               <div>
-                <dt>Especialista</dt>
+                <dt>Cirurgião dentista</dt>
                 <dd>Dr. Weslen Lima à frente dos casos cirúrgicos, harmonização orofacial e planejamento clínico.</dd>
               </div>
               <div>
-                <dt>Atendimento completo</dt>
+                <dt>Centro completo</dt>
                 <dd>Crianças, adolescentes, adultos e idosos em uma jornada clara, reservada e precisa.</dd>
               </div>
             </dl>

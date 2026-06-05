@@ -220,7 +220,9 @@ canvas {
   z-index: 0;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.18)),
+    radial-gradient(circle at 72% 30%, rgba(214, 173, 87, 0.12), transparent 24rem),
+    radial-gradient(circle at 18% 68%, rgba(69, 108, 185, 0.16), transparent 27rem),
+    linear-gradient(110deg, rgba(0, 0, 0, 0.88), rgba(8, 8, 7, 0.42) 54%, rgba(0, 0, 0, 0.82)),
     #050505;
 }
 
@@ -245,12 +247,48 @@ canvas {
 }
 
 .kinetic-veil,
+.clinical-lightfield,
 .diagnostic-sweep,
 .orbital-signature,
 .volumetric-glow,
 .cinema-vignette {
   position: absolute;
   pointer-events: none;
+}
+
+.clinical-lightfield {
+  inset: -18%;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.62;
+  mix-blend-mode: screen;
+}
+
+.clinical-lightfield span {
+  position: absolute;
+  width: 42vw;
+  height: 72vh;
+  top: 8%;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 225, 161, 0.16), rgba(102, 149, 220, 0.11), transparent),
+    radial-gradient(ellipse at center, rgba(255, 225, 161, 0.16), transparent 62%);
+  filter: blur(32px);
+  transform: rotate(16deg);
+  animation: lightfieldDrift 14s ease-in-out infinite alternate;
+}
+
+.clinical-lightfield span:first-child {
+  left: 18%;
+}
+
+.clinical-lightfield span:last-child {
+  right: 2%;
+  top: -4%;
+  height: 92vh;
+  opacity: 0.72;
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
 }
 
 .kinetic-veil {
@@ -367,8 +405,10 @@ canvas {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 22% 38%, rgba(255, 225, 161, 0.1), transparent 18rem),
-    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.36) 76%, rgba(0, 0, 0, 0.94) 100%);
+    radial-gradient(circle at 18% 40%, rgba(255, 225, 161, 0.13), transparent 19rem),
+    radial-gradient(circle at 80% 32%, rgba(95, 139, 210, 0.12), transparent 23rem),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent 48%, rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.24) 72%, rgba(0, 0, 0, 0.92) 100%);
 }
 
 .hero-inner {
@@ -440,13 +480,77 @@ canvas {
   animation: verticalPulse 4.8s ease-in-out infinite;
 }
 
-.hero-panel img {
+.hero-doctor-card {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 225, 161, 0.22);
+  background:
+    linear-gradient(145deg, rgba(255, 225, 161, 0.1), rgba(255, 255, 255, 0.03)),
+    rgba(8, 7, 6, 0.38);
+  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.38), 0 0 48px rgba(214, 173, 87, 0.08);
+  animation: portraitBreath 8s ease-in-out infinite alternate;
+}
+
+.hero-doctor-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.72)),
+    radial-gradient(circle at 58% 30%, rgba(255, 225, 161, 0.12), transparent 18rem),
+    linear-gradient(100deg, rgba(0, 0, 0, 0.24), transparent 44%, rgba(0, 0, 0, 0.18));
+}
+
+.hero-doctor-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 3;
+  pointer-events: none;
+  border: 1px solid rgba(255, 225, 161, 0.16);
+}
+
+.hero-doctor-card img {
   width: 100%;
-  aspect-ratio: 1.35 / 1;
+  aspect-ratio: 1.05 / 1;
   object-fit: cover;
-  object-position: center 42%;
-  opacity: 0.82;
-  filter: saturate(0.92) contrast(1.04);
+  object-position: 58% 43%;
+  opacity: 0.92;
+  filter: saturate(0.88) contrast(1.07) brightness(0.86);
+  transform: scale(1.02);
+}
+
+.hero-doctor-card figcaption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  z-index: 4;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  color: #fff9ed;
+}
+
+.hero-doctor-card figcaption span {
+  color: var(--champagne-soft);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-doctor-card figcaption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(23px, 2.2vw, 34px);
+  font-weight: 500;
+  line-height: 1;
+  text-align: right;
 }
 
 .hero-panel::after {
@@ -462,6 +566,10 @@ canvas {
   display: grid;
   gap: 24px;
   margin: 28px 0 0;
+  padding: 24px;
+  border: 1px solid rgba(214, 173, 87, 0.14);
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
 }
 
 .hero-panel dt {
@@ -1100,6 +1208,24 @@ canvas {
   50% {
     opacity: 0.78;
     transform: scaleY(1);
+  }
+}
+
+@keyframes lightfieldDrift {
+  0% {
+    transform: translate3d(-8%, 3%, 0) rotate(12deg) scaleX(0.86);
+  }
+  100% {
+    transform: translate3d(8%, -4%, 0) rotate(22deg) scaleX(1.06);
+  }
+}
+
+@keyframes portraitBreath {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -8px, 0);
   }
 }
 
