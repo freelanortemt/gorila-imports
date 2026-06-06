@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import type { PointerEvent } from "react";
 import type { Specialty } from "@/lib/specialties";
@@ -39,13 +38,9 @@ export function SpecialtyMedia({ audience, visual }: SpecialtyMediaProps) {
   };
 
   return (
-    <motion.figure
+    <figure
       ref={frameRef}
       className="specialty-media"
-      initial={{ opacity: 0, y: 34, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
       onBlur={resetPointer}
@@ -70,6 +65,6 @@ export function SpecialtyMedia({ audience, visual }: SpecialtyMediaProps) {
       </div>
 
       <p className="specialty-media-audience">{audience}</p>
-    </motion.figure>
+    </figure>
   );
 }

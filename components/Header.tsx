@@ -1,9 +1,8 @@
 "use client";
 
-import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { makeWhatsAppUrl } from "@/lib/specialties";
 
 const nav = [
@@ -16,26 +15,36 @@ const nav = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let frame = 0;
+    const syncScrolled = () => {
+      const next = window.scrollY > 24;
+      if (scrolledRef.current !== next) {
+        scrolledRef.current = next;
+        setScrolled(next);
+      }
+      frame = 0;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(syncScrolled);
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    gsap.fromTo(
-      ".site-shell",
-      { y: -24, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 }
-    );
-
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
     <header className={`site-shell ${scrolled ? "is-scrolled" : ""}`}>
       <Link className="brand-lockup" href="/" aria-label="Centro especializado LIMADENTT">
         <span className="brand-orb">
-          <Image src="/assets/limadentt-logo-gold.jpeg" alt="" width={96} height={96} priority />
+          <Image src="/assets/limadentt-logo-orb.jpeg" alt="" width={96} height={96} priority />
         </span>
         <span>
           <strong>LIMADENTT</strong>
