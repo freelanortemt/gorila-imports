@@ -3,6 +3,11 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
+type IdleWindow = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+  cancelIdleCallback?: (handle: number) => void;
+};
+
 const HeroCanvas = dynamic(() => import("./HeroCanvas").then((module) => module.HeroCanvas), {
   ssr: false,
   loading: () => null
@@ -20,10 +25,24 @@ function useCanvasEnabled() {
     if (reducedMotion || coarsePointer || compactViewport || liteMode) return;
 
     const enable = () => setEnabled(true);
-    const idleId = window.requestIdleCallback(enable, { timeout: 1200 });
+    const idleWindow = window as IdleWindow;
+    let idleId = 0;
+    let timeoutId = 0;
+
+    if (typeof idleWindow.requestIdleCallback === "function") {
+      idleId = idleWindow.requestIdleCallback(enable, { timeout: 1200 });
+    } else {
+      timeoutId = window.setTimeout(enable, 700);
+    }
 
     return () => {
-      window.cancelIdleCallback(idleId);
+      if (idleId && typeof idleWindow.cancelIdleCallback === "function") {
+        idleWindow.cancelIdleCallback(idleId);
+      }
+
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
     };
   }, []);
 
