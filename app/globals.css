@@ -219,31 +219,44 @@ canvas {
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  background: #050505;
+}
+
+.hero-photo-backdrop {
+  position: absolute;
+  inset: -4%;
+  z-index: 0;
   background:
-    radial-gradient(circle at 72% 30%, rgba(214, 173, 87, 0.12), transparent 24rem),
-    radial-gradient(circle at 18% 68%, rgba(69, 108, 185, 0.16), transparent 27rem),
-    linear-gradient(110deg, rgba(0, 0, 0, 0.88), rgba(8, 8, 7, 0.42) 54%, rgba(0, 0, 0, 0.82)),
-    #050505;
+    linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.72) 39%, rgba(0, 0, 0, 0.32) 68%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, transparent 34%, rgba(0, 0, 0, 0.82) 100%),
+    url("/assets/dr-limadentt-diagnostico.jpeg") 78% 44% / cover no-repeat;
+  filter: saturate(0.82) contrast(1.08) brightness(0.72);
+  transform: scale(1.04);
+  animation: heroPhotoDrift 24s ease-in-out infinite alternate;
 }
 
 .webgl-stage::before {
   content: "";
   position: absolute;
   inset: -28%;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   background:
-    conic-gradient(from 120deg at 56% 42%, transparent 0deg, rgba(214, 173, 87, 0.16) 72deg, transparent 128deg, rgba(79, 124, 203, 0.16) 220deg, transparent 312deg),
-    radial-gradient(circle at 42% 34%, rgba(255, 225, 161, 0.12), transparent 24rem);
+    conic-gradient(from 120deg at 58% 42%, transparent 0deg, rgba(214, 173, 87, 0.13) 72deg, transparent 128deg, rgba(79, 124, 203, 0.14) 220deg, transparent 312deg),
+    radial-gradient(circle at 32% 38%, rgba(255, 225, 161, 0.12), transparent 24rem),
+    radial-gradient(circle at 80% 30%, rgba(88, 133, 212, 0.16), transparent 28rem);
   filter: blur(46px);
   mix-blend-mode: screen;
-  opacity: 0.48;
+  opacity: 0.54;
   animation: livingAurora 16s ease-in-out infinite alternate;
 }
 
 .webgl-stage canvas {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  opacity: 0.46;
+  mix-blend-mode: screen;
 }
 
 .kinetic-veil,
@@ -258,9 +271,9 @@ canvas {
 
 .clinical-lightfield {
   inset: -18%;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
-  opacity: 0.62;
+  opacity: 0.54;
   mix-blend-mode: screen;
 }
 
@@ -293,10 +306,10 @@ canvas {
 
 .kinetic-veil {
   inset: -12%;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
   mix-blend-mode: screen;
-  opacity: 0.7;
+  opacity: 0.62;
 }
 
 .kinetic-veil span {
@@ -336,17 +349,17 @@ canvas {
 
 .diagnostic-sweep {
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   background:
-    linear-gradient(105deg, transparent 0%, transparent 42%, rgba(255, 225, 161, 0.13) 49%, transparent 56%, transparent 100%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 96px);
-  opacity: 0.62;
+    linear-gradient(105deg, transparent 0%, transparent 42%, rgba(255, 225, 161, 0.11) 49%, transparent 56%, transparent 100%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 96px);
+  opacity: 0.52;
   transform: translateX(-38%);
   animation: diagnosticSweep 11s ease-in-out infinite;
 }
 
 .orbital-signature {
-  z-index: 1;
+  z-index: 2;
   right: clamp(30px, 8vw, 140px);
   top: clamp(130px, 22vh, 220px);
   width: clamp(170px, 24vw, 340px);
@@ -372,23 +385,23 @@ canvas {
 
 .volumetric-glow {
   inset: -10%;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
   background:
     radial-gradient(circle at 68% 28%, rgba(255, 225, 161, 0.2), transparent 22rem),
     radial-gradient(circle at 18% 68%, rgba(76, 116, 190, 0.18), transparent 26rem),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.38) 48%, rgba(0, 0, 0, 0.74));
+    linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.36) 54%, rgba(0, 0, 0, 0.76));
   filter: blur(0.5px);
 }
 
 .cinema-vignette {
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.46) 42%, rgba(0, 0, 0, 0.36) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.46), transparent 34%, rgba(0, 0, 0, 0.9)),
-    radial-gradient(circle at center, transparent 38%, rgba(0, 0, 0, 0.68));
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.56) 43%, rgba(0, 0, 0, 0.24) 72%, rgba(0, 0, 0, 0.54) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.52), transparent 34%, rgba(0, 0, 0, 0.92)),
+    radial-gradient(circle at center, transparent 42%, rgba(0, 0, 0, 0.7));
 }
 
 .hero-section {
@@ -416,7 +429,7 @@ canvas {
   z-index: 4;
   display: grid;
   min-height: 100svh;
-  grid-template-columns: minmax(0, 0.72fr) minmax(310px, 0.38fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(250px, 0.28fr);
   gap: clamp(28px, 6vw, 76px);
   align-items: end;
   width: min(1180px, calc(100% - 44px));
@@ -463,6 +476,29 @@ canvas {
   margin-top: 36px;
 }
 
+.hero-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 760px;
+  margin-top: 26px;
+}
+
+.hero-proof-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 225, 161, 0.16);
+  color: rgba(251, 248, 241, 0.76);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px);
+}
+
 .hero-panel {
   position: relative;
   border-left: 1px solid rgba(214, 173, 87, 0.24);
@@ -480,77 +516,59 @@ canvas {
   animation: verticalPulse 4.8s ease-in-out infinite;
 }
 
-.hero-doctor-card {
+.hero-clinical-signature {
   position: relative;
-  isolation: isolate;
-  margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 225, 161, 0.22);
+  padding: 28px;
+  border: 1px solid rgba(255, 225, 161, 0.18);
   background:
-    linear-gradient(145deg, rgba(255, 225, 161, 0.1), rgba(255, 255, 255, 0.03)),
-    rgba(8, 7, 6, 0.38);
-  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.38), 0 0 48px rgba(214, 173, 87, 0.08);
-  animation: portraitBreath 8s ease-in-out infinite alternate;
+    linear-gradient(135deg, rgba(255, 225, 161, 0.1), rgba(255, 255, 255, 0.025)),
+    rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
 }
 
-.hero-doctor-card::before {
+.hero-clinical-signature::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 2;
   pointer-events: none;
   background:
-    linear-gradient(180deg, transparent 42%, rgba(0, 0, 0, 0.72)),
-    radial-gradient(circle at 58% 30%, rgba(255, 225, 161, 0.12), transparent 18rem),
-    linear-gradient(100deg, rgba(0, 0, 0, 0.24), transparent 44%, rgba(0, 0, 0, 0.18));
+    linear-gradient(115deg, rgba(255, 225, 161, 0.18), transparent 38%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 82px);
+  opacity: 0.42;
 }
 
-.hero-doctor-card::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  z-index: 3;
-  pointer-events: none;
-  border: 1px solid rgba(255, 225, 161, 0.16);
+.hero-clinical-signature span,
+.hero-clinical-signature strong,
+.hero-clinical-signature p {
+  position: relative;
 }
 
-.hero-doctor-card img {
-  width: 100%;
-  aspect-ratio: 1.05 / 1;
-  object-fit: cover;
-  object-position: 58% 43%;
-  opacity: 0.92;
-  filter: saturate(0.88) contrast(1.07) brightness(0.86);
-  transform: scale(1.02);
-}
-
-.hero-doctor-card figcaption {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 24px;
-  z-index: 4;
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  color: #fff9ed;
-}
-
-.hero-doctor-card figcaption span {
+.hero-clinical-signature span {
+  display: block;
+  margin-bottom: 16px;
   color: var(--champagne-soft);
   font-size: 11px;
   font-weight: 850;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
-.hero-doctor-card figcaption strong {
+.hero-clinical-signature strong {
+  display: block;
+  max-width: 340px;
+  color: #fff9ed;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(23px, 2.2vw, 34px);
+  font-size: clamp(38px, 4vw, 58px);
   font-weight: 500;
-  line-height: 1;
-  text-align: right;
+  line-height: 0.96;
+}
+
+.hero-clinical-signature p {
+  max-width: 360px;
+  margin: 18px 0 0;
+  color: rgba(251, 248, 241, 0.7);
+  line-height: 1.65;
 }
 
 .hero-panel::after {
@@ -1220,12 +1238,12 @@ canvas {
   }
 }
 
-@keyframes portraitBreath {
+@keyframes heroPhotoDrift {
   0% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-0.8%, 0, 0) scale(1.04);
   }
   100% {
-    transform: translate3d(0, -8px, 0);
+    transform: translate3d(1.2%, -0.8%, 0) scale(1.08);
   }
 }
 
@@ -1394,6 +1412,16 @@ canvas {
       #050505;
   }
 
+  .hero-photo-backdrop {
+    inset: -7%;
+    background:
+      radial-gradient(circle at 80% 24%, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.38) 34%, rgba(0, 0, 0, 0.84) 74%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.24) 34%, rgba(0, 0, 0, 0.9) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.22) 62%, rgba(0, 0, 0, 0.36)),
+      url("/assets/dr-limadentt-diagnostico.jpeg") 82% 22% / cover no-repeat;
+    filter: saturate(0.88) contrast(1.08) brightness(0.84);
+  }
+
   .webgl-stage::before {
     inset: -38%;
     opacity: 0.64;
@@ -1429,7 +1457,7 @@ canvas {
 
   .cinema-vignette {
     background:
-      linear-gradient(90deg, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.56) 58%, rgba(0, 0, 0, 0.48) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.5) 58%, rgba(0, 0, 0, 0.34) 100%),
       linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 36%, rgba(0, 0, 0, 0.94)),
       radial-gradient(circle at center, transparent 26%, rgba(0, 0, 0, 0.7));
   }
@@ -1451,8 +1479,25 @@ canvas {
     width: 100%;
   }
 
-  .hero-panel img {
-    aspect-ratio: 1.7 / 1;
+  .hero-proof-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .hero-proof-strip span {
+    justify-content: center;
+    min-height: 34px;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .hero-clinical-signature {
+    padding: 22px;
+  }
+
+  .hero-clinical-signature strong {
+    font-size: clamp(34px, 11vw, 46px);
   }
 
   .hero-panel dl {

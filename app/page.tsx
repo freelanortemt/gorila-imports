@@ -27,35 +27,13 @@ export default function Home() {
                   Explorar especialidades
                 </Link>
               </div>
+              <div className="hero-proof-strip" aria-label="Diferenciais clínicos da LIMADENTT">
+                <span>Dr. Weslen Lima</span>
+                <span>Cirurgias odontológicas</span>
+                <span>Harmonização orofacial</span>
+              </div>
             </Reveal>
           </div>
-
-          <Reveal delay={0.18} className="hero-panel doctor-panel">
-            <figure className="hero-doctor-card">
-              <Image
-                src="/assets/dr-limadentt-diagnostico.jpeg"
-                alt="Dr. Weslen Lima, cirurgião dentista da LIMADENTT em ambiente de diagnóstico odontológico"
-                width={900}
-                height={760}
-                priority
-                sizes="(max-width: 900px) 92vw, 390px"
-              />
-              <figcaption>
-                <span>Direção clínica</span>
-                <strong>Dr. Weslen Lima</strong>
-              </figcaption>
-            </figure>
-            <dl>
-              <div>
-                <dt>Cirurgião dentista</dt>
-                <dd>Dr. Weslen Lima à frente dos casos cirúrgicos, harmonização orofacial e planejamento clínico.</dd>
-              </div>
-              <div>
-                <dt>Centro completo</dt>
-                <dd>Crianças, adolescentes, adultos e idosos em uma jornada clara, reservada e precisa.</dd>
-              </div>
-            </dl>
-          </Reveal>
         </div>
       </section>
 

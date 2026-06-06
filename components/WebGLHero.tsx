@@ -217,8 +217,8 @@ function ShaderVeil() {
 export function WebGLHero() {
   return (
     <div className="webgl-stage" aria-hidden="true" data-webgl-hero>
+      <div className="hero-photo-backdrop" />
       <Canvas camera={{ position: [0, 0, 5.2], fov: 48 }} dpr={[1, 1.65]} gl={{ antialias: true, alpha: true }}>
-        <color attach="background" args={["#050505"]} />
         <ambientLight intensity={0.55} />
         <pointLight position={[2.5, 2.2, 2.8]} intensity={8.5} color="#ffe1a1" />
         <pointLight position={[-3, 1.4, -1.8]} intensity={4.2} color="#5d83cc" />
