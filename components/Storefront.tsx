@@ -76,6 +76,38 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
     .map(({ product, qty }) => `${qty}x ${product.name} - ${currency(product.price * qty)}`)
     .join("\n");
 
+  const makeWhatsAppOrderMessage = (formData: FormData, payment: string) => {
+    const name = String(formData.get("nome") || "");
+    const phone = String(formData.get("telefone") || "");
+    const notes = String(formData.get("observacoes") || "");
+    const intro =
+      payment === "Cartão"
+        ? "Olá, tentei finalizar meu pedido pelo site Gorila Imports com cartão, mas preciso de ajuda do atendimento para concluir a compra."
+        : "Olá, vim pelo site Gorila Imports e quero finalizar meu pedido via Pix.";
+    const closing =
+      payment === "Cartão"
+        ? "Pode me ajudar a finalizar esse pedido com segurança pelo atendimento?"
+        : "Pode confirmar meu pedido e me enviar a chave Pix para pagamento?";
+
+    return [
+      intro,
+      "",
+      `Nome: ${name}`,
+      `Telefone: ${phone}`,
+      "",
+      "Produtos:",
+      orderSummary,
+      "",
+      `Total: ${currency(total)}`,
+      `Forma de pagamento: ${payment}`,
+      notes ? `Observações: ${notes}` : "",
+      "",
+      closing
+    ]
+      .filter(Boolean)
+      .join("\n");
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     if (!cartItems.length) {
       event.preventDefault();
@@ -86,31 +118,15 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
     const formData = new FormData(event.currentTarget);
     const payment = String(formData.get("pagamento") || "");
 
-    if (payment === "Pix") {
+    if (payment === "Pix" || payment === "Cartão") {
       event.preventDefault();
+      const message = makeWhatsAppOrderMessage(formData, payment);
+      const statusMessage =
+        payment === "Cartão"
+          ? "Abrindo o WhatsApp para receber ajuda do atendimento e finalizar com segurança..."
+          : "Abrindo o WhatsApp para finalizar seu pedido via Pix...";
 
-      const name = String(formData.get("nome") || "");
-      const phone = String(formData.get("telefone") || "");
-      const notes = String(formData.get("observacoes") || "");
-      const message = [
-        "Olá, vim pelo site Gorila Imports e quero finalizar meu pedido via Pix.",
-        "",
-        `Nome: ${name}`,
-        `Telefone: ${phone}`,
-        "",
-        "Produtos:",
-        orderSummary,
-        "",
-        `Total: ${currency(total)}`,
-        "Forma de pagamento: Pix",
-        notes ? `Observações: ${notes}` : "",
-        "",
-        "Pode confirmar meu pedido e me enviar a chave Pix para pagamento?"
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      setStatus("Abrindo o WhatsApp para finalizar seu pedido via Pix...");
+      setStatus(statusMessage);
       window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       return;
     }
@@ -405,7 +421,6 @@ export function Footer() {
         <Link href="/categorias">Categorias</Link>
         <Link href="/filtros">Filtros</Link>
       </div>
-      <div className="made-with">Loja feita com Vendizap</div>
     </footer>
   );
 }

@@ -522,12 +522,6 @@ img {
   font-weight: 800;
 }
 
-.made-with {
-  grid-column: 1 / -1;
-  color: #9a96a0;
-  font-size: 13px;
-}
-
 .whatsapp-float {
   position: fixed;
   right: 24px;
