@@ -82,6 +82,39 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
       setStatus("Adicione ao menos um produto antes de finalizar o pedido.");
       return;
     }
+
+    const formData = new FormData(event.currentTarget);
+    const payment = String(formData.get("pagamento") || "");
+
+    if (payment === "Pix") {
+      event.preventDefault();
+
+      const name = String(formData.get("nome") || "");
+      const phone = String(formData.get("telefone") || "");
+      const notes = String(formData.get("observacoes") || "");
+      const message = [
+        "Olá, vim pelo site Gorila Imports e quero finalizar meu pedido via Pix.",
+        "",
+        `Nome: ${name}`,
+        `Telefone: ${phone}`,
+        "",
+        "Produtos:",
+        orderSummary,
+        "",
+        `Total: ${currency(total)}`,
+        "Forma de pagamento: Pix",
+        notes ? `Observações: ${notes}` : "",
+        "",
+        "Pode confirmar meu pedido e me enviar a chave Pix para pagamento?"
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      setStatus("Abrindo o WhatsApp para finalizar seu pedido via Pix...");
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      return;
+    }
+
     setStatus("Enviando seus dados para o atendimento...");
   };
 
@@ -256,8 +289,8 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
         aria-label="Falar com a Gorila Imports pelo WhatsApp"
       >
         <span>WhatsApp</span>
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M16 3.2A12.8 12.8 0 0 0 5.1 26.7L3.8 31l4.5-1.2A12.8 12.8 0 1 0 16 3.2Zm0 2.4a10.4 10.4 0 0 1 8.8 15.9 10.4 10.4 0 0 1-12.2 4.2l-.8-.3-2.7.7.8-2.6-.4-.8A10.4 10.4 0 0 1 16 5.6Zm-4.4 5.3c-.3 0-.7.1-1 .5-.3.4-1.2 1.2-1.2 2.9s1.3 3.4 1.4 3.6c.2.2 2.5 3.9 6.1 5.3 3 .1 3.6-.9 4.2-2.1.2-.4.2-.8.1-.9-.1-.2-.3-.3-.7-.5l-2.1-1c-.3-.1-.6-.2-.8.2-.2.3-.9 1-1.1 1.2-.2.2-.4.2-.8.1-.4-.2-1.5-.6-2.8-1.8-1-1-1.7-2.1-1.9-2.5-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.8-.5h-.7Z" />
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2.5 22l5.16-1.02A9.94 9.94 0 1 0 12.04 2Zm0 1.86a8.08 8.08 0 0 1 6.92 12.25 8.08 8.08 0 0 1-10.4 3.05l-.36-.18-3.06.6.62-2.98-.2-.38A8.08 8.08 0 0 1 12.04 3.86Zm-3.38 4.3c-.17 0-.45.06-.68.31-.23.25-.9.88-.9 2.15 0 1.27.92 2.5 1.05 2.67.13.17 1.8 2.75 4.36 3.86 2.16.93 2.6.75 3.07.7.47-.04 1.52-.62 1.73-1.22.21-.6.21-1.11.15-1.22-.06-.11-.23-.17-.49-.3l-1.72-.84c-.25-.12-.43-.18-.61.18-.18.36-.7.84-.86 1.01-.16.17-.32.19-.6.06-.28-.14-1.17-.43-2.23-1.38-.82-.73-1.38-1.64-1.54-1.92-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.18-.28.28-.47.09-.19.05-.36-.02-.5l-.78-1.88c-.2-.48-.4-.42-.55-.43l-.46-.01Z" />
         </svg>
       </a>
 
@@ -352,7 +385,6 @@ export function Footer() {
         <p>Atendimento ao cliente</p>
         <strong>{contactPhone}</strong>
         <span>{leadEmail}</span>
-        <span>gorilaimports.vendizap.com</span>
       </div>
       <div>
         <h3>Formas de pagamento aceitas</h3>

@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Gorila Imports",
   description:
     "Vitrine Gorila Imports com catálogo, carrinho e atendimento direto.",
-  metadataBase: new URL("https://gorilaimports.vendizap.com"),
+  metadataBase: new URL("https://freelanortemt.github.io/gorila-imports"),
   openGraph: {
     title: "Gorila Imports",
     description: "Catálogo online Gorila Imports.",
-    url: "https://gorilaimports.vendizap.com",
+    url: "https://freelanortemt.github.io/gorila-imports",
     siteName: "Gorila Imports",
     images: ["https://cdn.vendizap.com/vendizap-logos/1a261d674c847d39248e3c2272c3ba0e.webp"],
     locale: "pt_BR",
