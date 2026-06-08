@@ -528,6 +528,35 @@ img {
   font-size: 13px;
 }
 
+.whatsapp-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 70;
+  min-height: 58px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 18px;
+  border-radius: 999px;
+  color: white;
+  background: linear-gradient(135deg, #18c15f, #0a8f45);
+  box-shadow: 0 22px 48px rgba(15, 143, 70, 0.3);
+  font-weight: 900;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 58px rgba(15, 143, 70, 0.38);
+}
+
+.whatsapp-float svg {
+  width: 36px;
+  height: 36px;
+  fill: currentColor;
+}
+
 .age-gate {
   position: fixed;
   inset: 0;
@@ -1046,5 +1075,21 @@ img {
 
   .cart-drawer {
     padding: 18px;
+  }
+
+  .whatsapp-float {
+    right: 14px;
+    bottom: 14px;
+    min-height: 54px;
+    padding: 9px 10px;
+  }
+
+  .whatsapp-float span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 }

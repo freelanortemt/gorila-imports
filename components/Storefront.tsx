@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import {
   banner,
   categories,
@@ -15,6 +15,7 @@ import {
 } from "@/lib/store";
 
 type Cart = Record<number, number>;
+const ageConfirmationKey = "gorila-imports-age-confirmed";
 
 type StorefrontProps = {
   initialCategory?: string;
@@ -25,6 +26,7 @@ type StorefrontProps = {
 
 export function Storefront({ initialCategory = "Todas", initialQuery = "", featuredProduct, showProductDetail = false }: StorefrontProps) {
   const [adult, setAdult] = useState(false);
+  const [ageChecked, setAgeChecked] = useState(false);
   const [query, setQuery] = useState(initialQuery);
   const [category, setCategory] = useState(initialCategory);
   const [sort, setSort] = useState("default");
@@ -51,6 +53,17 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
     return list;
   }, [category, query, sort]);
 
+  useEffect(() => {
+    const confirmed = window.localStorage.getItem(ageConfirmationKey) === "true";
+    setAdult(confirmed);
+    setAgeChecked(true);
+  }, []);
+
+  const confirmAge = () => {
+    window.localStorage.setItem(ageConfirmationKey, "true");
+    setAdult(true);
+  };
+
   const add = (product: Product) => {
     setCart((current) => ({ ...current, [product.id]: (current[product.id] || 0) + 1 }));
   };
@@ -74,14 +87,14 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
 
   return (
     <main>
-      {!adult && (
+      {ageChecked && !adult && (
         <div className="age-gate" role="dialog" aria-modal="true">
           <div className="age-card">
             <img src={logo} alt="Gorila Imports" />
             <p>Atenção</p>
             <h1>Você é maior de 18 anos?</h1>
             <div>
-              <button onClick={() => setAdult(true)}>Sim</button>
+              <button onClick={confirmAge}>Sim</button>
               <a href="https://www.google.com">Não</a>
             </div>
           </div>
@@ -234,6 +247,19 @@ export function Storefront({ initialCategory = "Todas", initialQuery = "", featu
       </section>
 
       <Footer />
+
+      <a
+        className="whatsapp-float"
+        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Olá, vim pelo site Gorila Imports e gostaria de atendimento.")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar com a Gorila Imports pelo WhatsApp"
+      >
+        <span>WhatsApp</span>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 3.2A12.8 12.8 0 0 0 5.1 26.7L3.8 31l4.5-1.2A12.8 12.8 0 1 0 16 3.2Zm0 2.4a10.4 10.4 0 0 1 8.8 15.9 10.4 10.4 0 0 1-12.2 4.2l-.8-.3-2.7.7.8-2.6-.4-.8A10.4 10.4 0 0 1 16 5.6Zm-4.4 5.3c-.3 0-.7.1-1 .5-.3.4-1.2 1.2-1.2 2.9s1.3 3.4 1.4 3.6c.2.2 2.5 3.9 6.1 5.3 3 .1 3.6-.9 4.2-2.1.2-.4.2-.8.1-.9-.1-.2-.3-.3-.7-.5l-2.1-1c-.3-.1-.6-.2-.8.2-.2.3-.9 1-1.1 1.2-.2.2-.4.2-.8.1-.4-.2-1.5-.6-2.8-1.8-1-1-1.7-2.1-1.9-2.5-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.8-.5h-.7Z" />
+        </svg>
+      </a>
 
       {cartOpen && (
         <aside className="cart-drawer" aria-label="Carrinho">
